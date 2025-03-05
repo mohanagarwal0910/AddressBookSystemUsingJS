@@ -12,7 +12,7 @@ class AddressBook {
             return;
         }
 
-        // Check for duplicates using filter()
+        // Check for duplicates using some()
         let isDuplicate = this.contacts.some(existingContact => 
             existingContact.firstName === contact.firstName &&
             existingContact.lastName === contact.lastName
@@ -44,42 +44,34 @@ class AddressBook {
         return this.contacts.length;
     }
 
-    // View persons by city without using reduce()
-    viewByCity() {
-        let cityGroups = {}; // Object to store contacts by city
+    // Get the number of contacts by city using reduce()
+    getCountByCity() {
+        let cityCount = this.contacts.reduce((count, contact) => {
+            count[contact.city] = (count[contact.city] || 0) + 1;
+            return count;
+        }, {});
 
-        this.contacts.forEach(contact => {
-            if (!cityGroups[contact.city]) {
-                cityGroups[contact.city] = [];
-            }
-            cityGroups[contact.city].push(`${contact.firstName} ${contact.lastName}`);
+        console.log("\nNumber of Contacts by City:");
+        Object.entries(cityCount).forEach(([city, count]) => {
+            console.log(`${city}: ${count}`);
         });
 
-        console.log("\nPersons grouped by City:");
-        Object.keys(cityGroups).forEach(city => {
-            console.log(`${city}: ${cityGroups[city].join(", ")}`);
-        });
-
-        return cityGroups;
+        return cityCount;
     }
 
-    // View persons by state without using reduce()
-    viewByState() {
-        let stateGroups = {}; // Object to store contacts by state
+    // Get the number of contacts by state using reduce()
+    getCountByState() {
+        let stateCount = this.contacts.reduce((count, contact) => {
+            count[contact.state] = (count[contact.state] || 0) + 1;
+            return count;
+        }, {});
 
-        this.contacts.forEach(contact => {
-            if (!stateGroups[contact.state]) {
-                stateGroups[contact.state] = [];
-            }
-            stateGroups[contact.state].push(`${contact.firstName} ${contact.lastName}`);
+        console.log("\nNumber of Contacts by State:");
+        Object.entries(stateCount).forEach(([state, count]) => {
+            console.log(`${state}: ${count}`);
         });
 
-        console.log("\nPersons grouped by State:");
-        Object.keys(stateGroups).forEach(state => {
-            console.log(`${state}: ${stateGroups[state].join(", ")}`);
-        });
-
-        return stateGroups;
+        return stateCount;
     }
 }
 
