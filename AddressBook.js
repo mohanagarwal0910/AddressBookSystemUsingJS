@@ -13,11 +13,10 @@ class AddressBook {
         }
 
         // Check for duplicates using filter()
-        let isDuplicate = this.contacts
-            .filter(existingContact => 
-                existingContact.firstName === contact.firstName &&
-                existingContact.lastName === contact.lastName
-            ).length > 0;
+        let isDuplicate = this.contacts.some(existingContact => 
+            existingContact.firstName === contact.firstName &&
+            existingContact.lastName === contact.lastName
+        );
 
         if (isDuplicate) {
             console.log(`Error: Contact with name ${contact.firstName} ${contact.lastName} already exists.`);
@@ -40,45 +39,47 @@ class AddressBook {
         });
     }
 
-    // Count the number of contacts using reduce()
+    // Count the number of contacts using length
     getContactCount() {
-        return this.contacts.reduce((count) => count + 1, 0);
+        return this.contacts.length;
     }
 
-    // Search for persons in a particular city using filter()
-    searchByCity(city) {
-        let persons = this.contacts.filter(contact => contact.city === city);
-        if (persons.length === 0) {
-            console.log(`No contacts found in ${city}.`);
-            return [];
-        }
+    // View persons by city without using reduce()
+    viewByCity() {
+        let cityGroups = {}; // Object to store contacts by city
 
-        console.log(`\nContacts in ${city}:`);
-        persons.map(contact => console.log(`${contact.firstName} ${contact.lastName}, Email: ${contact.email}`));
-        return persons;
+        this.contacts.forEach(contact => {
+            if (!cityGroups[contact.city]) {
+                cityGroups[contact.city] = [];
+            }
+            cityGroups[contact.city].push(`${contact.firstName} ${contact.lastName}`);
+        });
+
+        console.log("\nPersons grouped by City:");
+        Object.keys(cityGroups).forEach(city => {
+            console.log(`${city}: ${cityGroups[city].join(", ")}`);
+        });
+
+        return cityGroups;
     }
 
-    // Search for persons in a particular state using filter()
-    searchByState(state) {
-        let persons = this.contacts.filter(contact => contact.state === state);
-        if (persons.length === 0) {
-            console.log(`No contacts found in ${state}.`);
-            return [];
-        }
+    // View persons by state without using reduce()
+    viewByState() {
+        let stateGroups = {}; // Object to store contacts by state
 
-        console.log(`\nContacts in ${state}:`);
-        persons.map(contact => console.log(`${contact.firstName} ${contact.lastName}, Email: ${contact.email}`));
-        return persons;
-    }
+        this.contacts.forEach(contact => {
+            if (!stateGroups[contact.state]) {
+                stateGroups[contact.state] = [];
+            }
+            stateGroups[contact.state].push(`${contact.firstName} ${contact.lastName}`);
+        });
 
-    // Count number of persons in a city using reduce()
-    countByCity(city) {
-        return this.contacts.reduce((count, contact) => (contact.city === city ? count + 1 : count), 0);
-    }
+        console.log("\nPersons grouped by State:");
+        Object.keys(stateGroups).forEach(state => {
+            console.log(`${state}: ${stateGroups[state].join(", ")}`);
+        });
 
-    // Count number of persons in a state using reduce()
-    countByState(state) {
-        return this.contacts.reduce((count, contact) => (contact.state === state ? count + 1 : count), 0);
+        return stateGroups;
     }
 }
 
