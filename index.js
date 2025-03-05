@@ -18,13 +18,9 @@ try {
 // Display all contacts
 myAddressBook.displayContacts();
 
-// Edit an existing contact
-console.log("\nEditing John's contact...");
-myAddressBook.editContact("John", "Doe", { 
-    address: "999 New Street",
-    city: "Pune",
-    phone: "9998887776"
-});
+// Delete a contact
+console.log("\nDeleting John's contact...");
+myAddressBook.deleteContact("John", "Doe");
 
-// Display contacts after editing
+// Display contacts after deletion
 myAddressBook.displayContacts();
