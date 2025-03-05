@@ -24,8 +24,8 @@ try {
 // Display all contacts
 myAddressBook.displayContacts();
 
-// View persons by city
-myAddressBook.viewByCity();
+// Get count by city
+myAddressBook.getCountByCity();
 
-// View persons by state
-myAddressBook.viewByState();
+// Get count by state
+myAddressBook.getCountByState();
