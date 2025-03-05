@@ -56,16 +56,4 @@ class Contact {
     }
 }
 
-// Example Usage
-try {
-    const contact1 = new Contact("John", "Doe", "123 Street", "Mumbai", "Maharashtra", "400088", "9876543210", "john.doe@example.com");
-    console.log("Contact Added Successfully:", contact1);
-} catch (error) {
-    console.error("Error:", error.message);
-}
-
-try {
-    const contact2 = new Contact("jo", "Smith", "Main St", "NY", "NY", "4000", "12345", "invalidemail@com");
-} catch (error) {
-    console.error("Error:", error.message); // Will throw multiple errors for invalid fields
-}
+module.exports = Contact; // Exporting Contact class
