@@ -11,9 +11,8 @@ try {
     const contact2 = new Contact("Alice", "Smith", "456 Lane", "Delhi", "Delhi", "110001", "9123456789", "alice.smith@example.com");
     myAddressBook.addContact(contact2);
 
-    // Attempt to add a duplicate contact
-    const duplicateContact = new Contact("John", "Doe", "789 Avenue", "Pune", "Maharashtra", "411001", "9876541234", "john.duplicate@example.com");
-    myAddressBook.addContact(duplicateContact); // This should be rejected
+    const contact3 = new Contact("Bob", "Brown", "789 Road", "Mumbai", "Maharashtra", "400089", "9988776655", "bob.brown@example.com");
+    myAddressBook.addContact(contact3);
 
 } catch (error) {
     console.error("Error:", error.message);
@@ -22,5 +21,14 @@ try {
 // Display all contacts
 myAddressBook.displayContacts();
 
-// Get the number of contacts using reduce()
-console.log(`\nTotal Contacts: ${myAddressBook.getContactCount()}`);
+// Search for persons in a particular city
+myAddressBook.searchByCity("Mumbai");
+
+// Search for persons in a particular state
+myAddressBook.searchByState("Maharashtra");
+
+// Count number of persons in a city
+console.log(`\nNumber of contacts in Mumbai: ${myAddressBook.countByCity("Mumbai")}`);
+
+// Count number of persons in a state
+console.log(`Number of contacts in Maharashtra: ${myAddressBook.countByState("Maharashtra")}`);
