@@ -18,9 +18,5 @@ try {
 // Display all contacts
 myAddressBook.displayContacts();
 
-// Delete a contact
-console.log("\nDeleting John's contact...");
-myAddressBook.deleteContact("John", "Doe");
-
-// Display contacts after deletion
-myAddressBook.displayContacts();
+// Get the number of contacts
+console.log(`\nTotal Contacts: ${myAddressBook.getContactCount()}`);
