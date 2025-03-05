@@ -14,6 +14,9 @@ try {
     const contact3 = new Contact("Bob", "Brown", "789 Road", "Mumbai", "Maharashtra", "400089", "9988776655", "bob.brown@example.com");
     myAddressBook.addContact(contact3);
 
+    const contact4 = new Contact("Charlie", "Johnson", "101 Avenue", "Pune", "Maharashtra", "411001", "9876512345", "charlie.johnson@example.com");
+    myAddressBook.addContact(contact4);
+
 } catch (error) {
     console.error("Error:", error.message);
 }
@@ -21,14 +24,8 @@ try {
 // Display all contacts
 myAddressBook.displayContacts();
 
-// Search for persons in a particular city
-myAddressBook.searchByCity("Mumbai");
+// View persons by city
+myAddressBook.viewByCity();
 
-// Search for persons in a particular state
-myAddressBook.searchByState("Maharashtra");
-
-// Count number of persons in a city
-console.log(`\nNumber of contacts in Mumbai: ${myAddressBook.countByCity("Mumbai")}`);
-
-// Count number of persons in a state
-console.log(`Number of contacts in Maharashtra: ${myAddressBook.countByState("Maharashtra")}`);
+// View persons by state
+myAddressBook.viewByState();
